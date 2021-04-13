@@ -65,7 +65,7 @@ export default class HousesController {
 
   deleteHouse(id) {
     try {
-      housesService.deleteHouses(id)
+      housesService.deleteHouse(id)
     } catch (error) {
       console.error(error)
     }

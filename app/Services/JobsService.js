@@ -5,13 +5,11 @@ import { api } from "./AxiosService.js";
 class JobsService {
     async getJobs(){
     let res = await api.get('jobs')
-    console.log(res.data)
     ProxyState.jobs = res.data.map(j => new Job(j))
     }
 
     async createJob(newJob){
         let res = await api.post('jobs', newJob)
-        console.log(res.data)
 
         this.getJobs()
 
@@ -28,7 +26,7 @@ class JobsService {
         let job = ProxyState.jobs.find(job=> job.id === id)
         job.rate += 1
 
-        await api.put('jobs/' + id, job)
+        await api.put('jobs/' + id, { rate: job.rate })
         ProxyState.jobs = ProxyState.jobs
         window.alert('thank you for applying')
     }
